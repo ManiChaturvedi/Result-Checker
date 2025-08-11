@@ -131,14 +131,16 @@ function App() {
     }
   }
 
+  const hasContent = Boolean(error) || sortedResults.length > 0;
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
-      <div className="mx-auto max-w-5xl px-4 py-6 sm:py-8">
-        <div className="min-h-screen sm:min-h-[50vh] grid place-items-center">
+      <div className="mx-auto max-w-5xl px-4 py-4 sm:py-8">
+        <div className={`${hasContent ? '' : 'min-h-[50vh] grid place-items-center'}`}>
           <div className="w-full max-w-2xl mx-auto">
-            <h1 className="mb-4 text-center text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Student Result Lookup</h1>
-            <form onSubmit={handleSubmit} className="w-full">
-              <div className="flex flex-col gap-3">
+            <h1 className="mb-3 sm:mb-4 text-center text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Student Result Lookup</h1>
+            <form onSubmit={handleSubmit} className="w-full mb-4">
+              <div className="flex flex-col gap-2">
                 <input
                   type="text"
                   inputMode="numeric"
@@ -160,15 +162,19 @@ function App() {
         </div>
 
         {error && (
-          <div className="mb-6 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 dark:border-rose-800 dark:bg-rose-950 dark:text-rose-200">
+          <div className="mt-3 mb-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 dark:border-rose-800 dark:bg-rose-950 dark:text-rose-200">
             {error}
           </div>
         )}
 
-        {student && <SummaryCard student={student} />}
+        {student && (
+          <div className="mt-4">
+            <SummaryCard student={student} />
+          </div>
+        )}
 
         {sortedResults.length > 0 && (
-          <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {sortedResults.map((item, idx) => (
               <SemesterCard key={`${item.Id}-${idx}`} item={item} />
             ))}
