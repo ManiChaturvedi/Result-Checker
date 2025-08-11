@@ -134,11 +134,11 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       <div className="mx-auto max-w-5xl px-4 py-6 sm:py-8">
-        <div className="min-h-[50vh] grid place-items-center">
+        <div className="min-h-screen sm:min-h-[50vh] grid place-items-center">
           <div className="w-full max-w-2xl mx-auto">
             <h1 className="mb-4 text-center text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">Student Result Lookup</h1>
             <form onSubmit={handleSubmit} className="w-full">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="flex flex-col gap-3">
                 <input
                   type="text"
                   inputMode="numeric"
